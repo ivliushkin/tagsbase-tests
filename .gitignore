@@ -1,0 +1,16 @@
+# Кэш Python
+__pycache__/
+*.py[cod]
+*$py.class
+# Виртуальное окружение
+.venv/
+venv/
+env/
+# Логи
+*.log
+*.pyc
+
+.DS_Store
+
+# Секреты и настройки
+.env
