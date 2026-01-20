@@ -35,6 +35,5 @@ def test_sitemap_page_status(client):
     assert response.status_code == 200
 
 def test_nonexistent_page(client):
-    """Проверяет, что несуществующая страница возвращает 404."""
     response = client.get('/nonexistent-page')
     assert response.status_code == 404
