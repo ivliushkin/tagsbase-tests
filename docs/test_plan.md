@@ -28,7 +28,7 @@ Purpose of testing is to ensure the Tagsbase MVP:
 
 - Flask API endpoints and page logic (backend controllers)
 - Web UI layouts and dynamic data rendering (Jinja2 templates)
-- Database content (brands & categories) Data integrity for "Brands" and "Categories" tables (SQlite)
+- Data integrity for "Brands" and "Categories" tables (SQlite)
 - Frontend static files (CSS styles, icons, and images)
 - Automated build and deployment workflows (GitHub Actions YAML)
 
