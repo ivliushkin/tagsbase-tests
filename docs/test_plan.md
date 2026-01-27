@@ -1,9 +1,9 @@
-# Test Plan
+# Test Plan: TagsBase.com
 
 **Project:** Tagsbase - Fashion Brand Directory  
-**Test Plan Identifier:** TAGSBASE-TP-001
-**Version:** 1.0  
-**Date:** January 22, 2026  
+**Test Plan Identifier:** TAGSBASE-TP-002
+**Version:** 1.1  
+**Date:** January 26, 2026  
 **Author:** Denis Ivliushkin
 
 ## 1. References
@@ -17,34 +17,48 @@
 
 **TagsBase** is a small learning project and brand directory. I use this website to practice software testing, QA, and CI/CD on a real project. It is a sandbox where I test ideas, try new tools, and learn how software is built and deployed step by step.
 
-Purpose of testing is to ensure the Tagsbase MVP:
+**Test Basis:**
 
-- correctly displays fashion brand information
-- supports basic navigation and discovery flows
-- contains no critical functional defects or obvious regressions
-- remains stable after each deployment (GitHub Actions + Hosting)
+- Requirements
+- Current implementation (Flask routes, Jinja2 templates, SQLite data)
+- User stories:
+  - US1: A user browses the brand catalog by category / all / A-Z
+  - US2: A user searches for a brand by name
+  - US3: A user opens brand details page
+  - US4: A user sends a message via a feedback form
+  - US5: The admin page is displaying for the administrator
+
+**Test Objectives:**
+
+- Ensure the absence of critical blockers (500 Internal Server Error, broken navigation, data corruption)
+- Cover 80%+ of happy paths + major negative cases
+- Protect against regressions via CI/CD
+- Check basic non-functionality (responsiveness, SEO, load time on hosting)
 
 ## 3. Test Items
 
-- Flask API endpoints and page logic (backend controllers)
-- Web UI layouts and dynamic data rendering (Jinja2 templates)
-- Data integrity for "Brands" and "Categories" tables (SQlite)
+- Flask routes and page logic (backend controllers)
+- Jinja2 templates & rendering
+- Database(SQLite)
 - Frontend static files (CSS styles, icons, and images)
-- Automated build and deployment workflows (GitHub Actions YAML)
+- Automated build and deployment workflows (GitHub Actions)
 
 ## 4. Features to be Tested
 
 - Core user ways (home page → brand discovery → brand detail page)
-- All implemented Flask routes and templates
+- All implemented Flask routes and templates(homepage, 404, All brands, Brand detail)
 - Responsive layout on desktop and mobile (basic check)
-- Data correctness of brands that are already added
+- Data correctness of brands
+- Contact form (validation, sending messages)
 - CI/CD pipeline stability (tests pass → auto-deploy)
+- Search option
+- SEO quick check
+- Home page load
 
 ## 5. Features Not to Be Tested
 
-- Advanced search / full-text search
 - Admin panel / content management
-- Performance & load testing (> 100 concurrent users)
+- Performance & load testing(deep check)
 - Accessibility (WCAG)
 - Internationalization / multi-language
 - Security audit (OWASP Top 10 deep check)
@@ -66,7 +80,7 @@ Purpose of testing is to ensure the Tagsbase MVP:
 
 **Regression Testing:** Automated tests in CI to prevent regressions after changes.
 
-**Non-Functional Testing (Basic):** Light checks for performance (load time < 3s) and SEO (meta tags, sitemap). Deep audits are deferred (see Section 5).
+**Non-Functional Testing (Basic):** page load + SEO (meta tags, sitemap)
 
 ### Automation
 
@@ -88,7 +102,7 @@ _Dev tools_ for inspection (console errors, network requests).
 ## 7. Item Pass/Fail Criteria
 
 - Pass: All automated tests green, no P0/P1 defects found in smoke, page load < 3s (subjective), no console errors.
-- Fail: Any critical bug (500 error, wrong data display, broken navigation) → rollback / fix required before considering "ready".
+- Fail: Any critical bug (500 error, wrong data display, broken navigation) → rollback → fix
 
 ## 8. Suspension Criteria and Resumption Requirements
 
@@ -101,11 +115,12 @@ Resumption: new commit with fix → CI green + quick manual smoke
 pytest suite (unit + simple functional / integration tests)
 
 **Manual (checklist):**
-Smoke / happy-path checklist
+Checklist + bug reports
 
-**Bug report template** (if critical bug found - title, steps, actual/expected, screenshots)
+**Bug report template** (if a bug found - title, steps, actual/expected, screenshots)
 
 **Test report**
+Summary after each cycle (passed/failed/total, bugs)
 
 ## 10. Environmental Needs
 
@@ -122,6 +137,8 @@ Smoke / happy-path checklist
 | Hosting limits / downtime              | Low         | Medium | Set up and receive notifications       |
 | Very slow page load due to many images | Medium      | Medium | Lazy loading (future), compress images |
 | Broken tests block deployment          | Medium      | High   | Keep tests simple & stable             |
+| Db corruption                          | Low         | High   | Manual check                           |
+| Filter/search                          | Medium      | High   | Auto test on (test)/real data          |
 
 ## 12. Approvals
 
