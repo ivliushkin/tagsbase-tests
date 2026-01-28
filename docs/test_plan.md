@@ -26,7 +26,7 @@
   - US2: A user searches for a brand by name
   - US3: A user opens brand details page
   - US4: A user sends a message via a feedback form
-  - US5: The admin page is displaying for the administrator
+  - US5: The admin page is displaying for the administrator only
 
 **Test Objectives:**
 
